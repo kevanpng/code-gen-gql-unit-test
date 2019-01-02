@@ -1,0 +1,13 @@
+{% for k, v in _input.items() -%}
+{% if v | int != 0 -%}
+    {{ k | camel_to_snake }} = {{ v }}
+{% else -%}
+    {{ k | camel_to_snake }} = '{{ v }}'
+{% endif -%}
+
+{% endfor %}
+variables = {
+    {% for k, v in _input.items() -%}
+    '{{ k }}': {{ k | camel_to_snake }},
+    {% endfor -%}
+}
